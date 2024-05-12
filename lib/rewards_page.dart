@@ -23,7 +23,7 @@ class RewardsPage extends StatelessWidget {
       'images/exp-2.png',
       'images/exp-1.png',
     ];
-
+    int crossAxisCount = MediaQuery.of(context).size.width > 600 ? 3 : 2;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -38,7 +38,7 @@ class RewardsPage extends StatelessWidget {
                 child: GridView.builder(
                   itemCount: _photos.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: crossAxisCount,
                     mainAxisSpacing: 10.0,
                     crossAxisSpacing: 10.0,
                   ),
@@ -48,13 +48,16 @@ class RewardsPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 6),
                           child: Container(
-                            width: MediaQuery.of(context).size.width / 3 - 16,
+                            width: MediaQuery.of(context).size.width /
+                                    crossAxisCount -
+                                20,
+                            //width: MediaQuery.of(context).size.width / 3 - 16,
                             height: MediaQuery.of(context).size.height / 6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                               image: DecorationImage(
                                 image: AssetImage(_photos[rowIndex]),
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
